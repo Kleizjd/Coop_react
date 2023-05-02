@@ -1,0 +1,803 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans:400,700");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Noto Sans", sans-serif;
+}
+
+*::-moz-selection {
+  background: rgba(0, 0, 0, 0.2);
+  color: #fff;
+}
+
+*::selection {
+  background: rgba(0, 0, 0, 0.2);
+  color: #fff;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+  display: flex;
+  transition: padding 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+a {
+  text-decoration: none;
+  color: #ef3340;
+}
+
+header {
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+header .nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 80px;
+}
+header .nav .title {
+  line-height: 80px;
+  padding: 0 5%;
+  /*font-size: 24px;*/
+  color: white;
+  font-weight: 900;
+  background: #000000de;
+  width: 100%;
+}
+header .nav .toggle {
+  position: absolute;
+  margin: auto;
+  width: 46px;
+  height: 46px;
+  right: 5%;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  cursor: pointer;
+  background: #009688;
+}
+header .nav .toggle .bar {
+  position: relative;
+  width: 40px;
+  height: 2px;
+  background: #fff;
+}
+header .nav .toggle .bar:before, header .nav .toggle .bar:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  left: 0;
+  transform-origin: center center;
+  transition: transform 0.25s ease, top 0.25s ease, bottom 0.25s ease;
+}
+header .nav .toggle .bar:before {
+  top: -10px;
+}
+header .nav .toggle .bar:after {
+  bottom: -10px;
+}
+header .nav .toggle.clicked .bar {
+  background: transparent;
+}
+header .nav .toggle.clicked .bar:before, header .nav .toggle.clicked .bar:after {
+  background: #fff;
+}
+header .nav .toggle.clicked .bar:before {
+  transform: rotate(45deg);
+  top: 0;
+}
+header .nav .toggle.clicked .bar:after {
+  transform: rotate(-45deg);
+  bottom: 0;
+}
+header .nav nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  opacity: 0;
+  z-index: 5;
+  transition: opacity 0.5s ease;
+}
+header .nav nav .showcase {
+  background: #000000de;
+  flex: 1.6;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header .nav nav .showcase .showcase-container {
+  width: 100%;
+  position: absolute;
+  overflow: hidden;
+  top: 95px;
+}
+header .nav nav .showcase .showcase-container:before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+header .nav nav .showcase .showcase-menu {
+  position: absolute;
+  left: 0;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  overflow-y: visible;
+  list-style-type: none;
+  transition: top 0.25s ease;
+}
+header .nav nav .showcase .showcase-menu li {
+  width: 94%;
+  height:68vh;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  text-transform: uppercase;
+  left: 5%;
+  overflow: hidden;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  z-index: 1;
+  overflow-y: auto;
+  margin-bottom: 11%;
+}
+header .nav nav .showcase .showcase-menu li.overlay:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: -1;
+}
+header .nav nav .menu {
+  background: #fff;
+  flex: 1;
+}
+header .nav nav .menu ul {
+  width: 100%;
+  padding: 1% 6% 0% 6%;
+  list-style-type: none;
+  max-height: 100%;
+  overflow-y: auto;
+}
+header .nav nav .menu ul::-webkit-scrollbar {
+  width: 6px;
+  height: 10px;
+}
+header .nav nav .menu ul::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+header .nav nav .menu ul::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.4);
+  border: 0px none #ffffff;
+  border-radius: 3px;
+}
+header .nav nav .menu ul::-webkit-scrollbar-thumb:hover {
+  background: #000;
+}
+header .nav nav .menu ul::-webkit-scrollbar-thumb:active {
+  background: #000;
+}
+header .nav nav .menu ul::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border: 0px none #ffffff;
+  border-radius: 0;
+}
+header .nav nav .menu ul::-webkit-scrollbar-track:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+header .nav nav .menu ul::-webkit-scrollbar-track:active {
+  background: rgba(0, 0, 0, 0.1);
+}
+header .nav nav .menu ul::-webkit-scrollbar-corner {
+  background: transparent;
+}
+header .nav nav .menu ul li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+header .nav nav .menu ul li .number {
+  display: inline-block;
+  padding: 0px 0 0 30px;
+  overflow: hidden;
+  width: 60px;
+}
+header .nav nav .menu ul li .number span {
+  display: block;
+  font-size: 20px;
+  font-weight: 400;
+  transition: transform 0.25s ease;
+  transform: translateY(100%);
+}
+header .nav nav .menu ul li a {
+  display: inline-block;
+  font-size: 20px;
+  color: #000;
+  line-height: 1;
+  padding: 2% 0 2% 7%;
+  transition: transform 0.25s ease;
+  width: 70%;
+}
+header .nav nav .menu ul li:hover a {
+  transform: translateX(60px);
+  background: #009688;
+  color: white;
+}
+header .nav nav .menu ul li.hover .number span {
+  transform: translateY(0);
+}
+header .nav nav.hidden {
+  display: none;
+}
+header .nav nav.open {
+  opacity: 1;
+}
+header .nav nav.open .showcase {
+  -webkit-animation: slideInLeft 0.5s cubic-bezier(0.3, 0, 0.3, 1) forwards;
+          animation: slideInLeft 0.5s cubic-bezier(0.3, 0, 0.3, 1) forwards;
+}
+header .nav nav.open .menu {
+  -webkit-animation: slideInRight 0.5s cubic-bezier(0.3, 0, 0.3, 1) forwards;
+          animation: slideInRight 0.5s cubic-bezier(0.3, 0, 0.3, 1) forwards;
+}
+
+@-webkit-keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@-webkit-keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.content {
+  position: relative;
+  flex: 1;
+  padding: 80px 40px 40px;
+  background-image: url(https://www.maximaformacion.es/wp-content/uploads/2021/09/pexels-anna-nekrashevich-6801648-scaled.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+/*
+.content p{
+  color: #009688;
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background: white;
+  padding: 1%;
+  font-weight: 600;
+}*/
+.content p a {
+  color: #009688;
+  box-shadow: 0 1px 0 0 #ef3340;
+}
+
+.active {
+  background: #009688;
+  color: white;
+}
+
+.active > a {
+  color: white !important;
+}
+
+.menu > .sub-menu {
+  padding: 25px 2% 20px 6%;
+  background: #009688;
+  color: white;
+  font-size: 20px;
+} 
+
+#wrap {
+  margin: 0 auto 30px;
+}
+
+#regbar {
+  height: 67px;
+  background: #34495e;
+}
+
+#navthing {
+  margin-left: 50px;
+}
+
+h2 {
+  padding: 20px;
+  color: #ecf0f1;
+}
+
+fieldset {
+  border: none;
+}
+
+.login {
+  /*position: relative;
+  width: 350px;*/
+  display: none;/*
+  z-index: 15;
+  left: 70%;
+  top: 10px;*/
+}
+
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 15px solid #009688;
+  right: 5%;
+  position: absolute;
+  top: -10px;
+}
+
+.formholder {
+  background: #ffffff;
+  width: 350px;
+  border-radius: 5px;
+  padding-top: 5px;
+  border: 5px solid #35729d;
+  pointer-events: all;
+}
+.formholder input[type="cedula"],
+.formholder input[type="password"] {
+  background: #9e9e9e38;
+  padding: 7px 5px;
+  margin: 10px 0;
+  width: 96%;
+  display: block;
+  font-size: 18px;
+  border-radius: 5px;
+  border: none;
+  -webkit-transition: 0.3s linear;
+  -moz-transition: 0.3s linear;
+  -o-transition: 0.3s linear;
+  transition: 0.3s linear;
+}
+.formholder input[type="cedula"]:focus,
+.formholder input[type="password"]:focus {
+  outline: none;
+  box-shadow: 0 0 1px 1px #1abc9c;
+}
+.formholder button[id="enviar"] {
+  background: #35729d;
+  padding: 10px;
+  font-size: 20px;
+  display: block;
+  width: 85%;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5%;
+}
+.formholder button[id="enviar"]:hover {
+  background: #009688;
+}
+
+.randompad {
+  padding: 10px;
+}
+
+.green {
+  color: #1abc9c;
+}
+
+a {
+  color: #ecf0f1;
+  text-decoration: none;
+}
+a:hover {
+  color: #1abc9c;
+}
+
+.modal-login{
+  display: none;
+  position: fixed;
+  top: 80px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 1 !important;
+  z-index: 1024;
+  background: #0f1010c9;
+}
+
+.alert {
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  display: none;
+}
+
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  font-size: 15px;
+}
+
+button:disabled {
+  background: #ccc !important;
+  cursor: no-drop !important;
+}
+
+.tooltipp {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltipp .tooltiptext {
+  visibility: hidden;
+  width: 130px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px 0;
+  font-size: 14px;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltipp:hover .tooltiptext {
+  visibility: visible;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-backdrop.show {
+  /*--bs-backdrop-zindex: aliceblue !important;*/
+}
+
+#icon-edit{
+  z-index:1; 
+  cursor: pointer;
+}
+
+#icon-edit:hover{
+  font-size: 30px;
+}
+
+.badge{
+  z-index: 1;
+}
+
+.icon-eliminar{
+  z-index:1; 
+  cursor: pointer;
+}
+
+.icon-eliminar:hover{
+  font-size: 30px;
+}
+
+/* Cargando animación */
+.cargando{ 
+  position: relative; 
+  color: #FFF;
+  margin-top: 2em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase
+}
+.contenedor-loader{  
+  height: 6em;
+}
+#contenedor{ 
+  background-color: #00b8de; 
+  display: grid;
+  place-content: center;
+  height: 100vh;
+  color: #000;
+}
+
+.loader,
+.loader:before,
+.loader:after {
+  background: #FFF;
+  animation: cargando 1s infinite ease-in-out;
+  width: 1em;
+  height: 4em;
+}
+.loader:before,
+.loader:after {
+  position: absolute;
+  top: 0;
+  content: '';
+}
+.loader:before {
+  left: -1.5em;
+}
+.loader {
+  text-indent: -9999em;
+  margin: 15% auto;
+  position: relative;
+  font-size: 11px;
+  animation-delay: 0.16s;
+}
+.loader:after {
+  left: 1.5em;
+  animation-delay: 0.32s;
+}
+
+@keyframes cargando {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 0 #FFF;
+    height: 4em;
+  }
+  40% {
+    box-shadow: 0 -2em #ffffff;
+    height: 5em;
+  }
+}
+
+/* Acordeon sub indice */
+.accordion-item{
+  background: transparent !important;
+}
+
+.accordion-item > h2{
+  padding: 0px;
+}
+
+.accordion-button{
+  background: transparent !important;
+  color: white !important;
+  padding: 5px !important;
+  text-transform: uppercase;
+  font-size: 18px !important;
+}
+
+.accordion-button::after{
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e") !important;
+}
+
+/*
+.showcase-menu{
+  overflow-y: auto !important;
+  height: 87vh !important;
+}
+*/
+
+.accordion-header > a:hover{
+  background: #3d4c4b;
+  font-size: 19px !important;
+}
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #009688 white;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: white;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #009688;
+  border-radius: 20px;
+  border: 3px solid white;
+}
+
+#documento{
+  background: #00000066;
+  padding: 1% 15%;
+}
+
+#contenido-doc {
+  background: white;
+  overflow: scroll;
+  height: 117vh;
+  padding: 6% 6% 6% 10%;
+}
+
+@media (max-width: 787px) {
+  header .nav nav {
+    display: revert;
+  }
+
+  header .nav nav .menu ul{
+    min-height: 200px;
+  }
+
+  header .nav nav.open {
+    background: #141212eb;
+  }
+
+  header .nav nav .showcase .showcase-container {
+    top: 20px;
+  }
+
+  #loginform {
+    right: 10% !important;
+  }
+
+  header .nav nav .showcase .showcase-menu li {
+    height: 36vh;
+  }
+
+  #documento{
+    padding: 1%;
+  }
+
+  .content{
+    padding: 0px;
+  }
+
+  .content > p {
+    font-size: 14px;
+    margin-top: 6px;
+  }
+
+  body {
+    padding: 40px 0px 0px 0px!important;
+  }
+
+  #contenido-doc {
+    padding: 0px;
+  }
+
+  #loginform{
+    display: none !important;
+  }
+
+  header .nav .toggle {
+    width: 22px;
+    height: 22px;
+  }
+
+  .title > span {
+    font-size: 12px !important;
+  }
+
+  header .nav .title {
+    line-height: 50px;
+  }
+
+  header .nav{
+    height: 46px;
+  }
+
+  .sub-menu > div > h4 {
+    font-size: 14px;
+  }
+
+  .menu > .sub-menu {
+    padding: 14px 2% 20px 6%;
+  }
+
+  #año_doc_dos{
+    height: 18px;
+  }
+
+  #menu-principal > li > a {
+    font-size: 14px;
+  }
+
+  #menu-principal > li > div > span {
+    font-size: 14px;
+  }
+
+  header .nav nav .menu ul li .number {
+    padding: 0px 0 0 10px;
+    width: 20px;
+  }
+
+  header .nav nav .menu ul li:hover a {
+    transform: translateX(10px);
+  }
+
+  #title-indices{
+    font-size: 15px;
+  }
+
+  select[name="tipo_indice"]{
+    height: 18px;
+  }
+
+  #flush-headingOne > a {
+    font-size: 14px !important;
+  }
+
+  .accordion-header > a:hover {
+    font-size: 13px !important;
+  }
+}
